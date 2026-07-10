@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>KILL BILL — Wawa bloody affair</title>
+    <style>
+        #loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: black;
+            color: #FFD400;
+            font-family: monospace;
+            font-size: 2em;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+        }
+        #loading-overlay small { color: #888; font-size: 12px; margin-top: 14px; }
+    </style>
+</head>
+<body>
+    <div id="loading-overlay">Chargement...<small>Powered by OpenBOR</small></div>
+    <div id="game-container">
+        <canvas id="canvas" tabindex="1"></canvas>
+        <div id="overlay"></div>
+        <div id="buttons-overlay"></div>
+    </div>
+    <script>
+        const contentPath = './';
+        window.myGame = {
+            contentPath: contentPath,
+            paths: {
+                assetsPaths: [contentPath + 'game_wawa.zip'],
+                'OpenBOR.zip': contentPath + 'OpenBOR.zip',
+                'game.css': contentPath + 'game.css',
+                'main.js': contentPath + 'main.js',
+                'mobile.js': contentPath + 'mobile.js',
+                'buttons.zip': contentPath + 'buttons.zip',
+                'fflate.min.js': contentPath + 'fflate.min.js',
+                'nipplejs.min.js': contentPath + 'nipplejs.min.js',
+            },
+            assetType: 'zip',
+            baseWidth: 320,
+            baseHeight: 240,
+        };
+        const link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.href = window.myGame.paths['game.css'];
+        document.head.appendChild(link);
+
+        window.myGame.LoadingOverlay = document.getElementById('loading-overlay');
+        window.myGame.canvas = document.getElementById('canvas');
+        window.myGame.canvas.width = window.myGame.baseWidth;
+        window.myGame.canvas.height = window.myGame.baseHeight;
+        window.myGame.overlay = document.getElementById('overlay');
+        window.myGame.buttonsOverlay = document.getElementById('buttons-overlay');
+
+        var script = document.createElement('script');
+        script.src = window.myGame.paths['main.js'];
+        document.body.appendChild(script);
+    </script>
+</body>
+</html>
